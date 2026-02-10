@@ -1,0 +1,4 @@
+if ARCH_SC8830
+config SYS_SOC
+    default "sc8830"
+endif

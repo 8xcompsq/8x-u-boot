@@ -1,6 +1,20 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
+/* Initial Stack Setup */
+#define CFG_SYS_INIT_RAM_ADDR        0x80000000
+#define CFG_SYS_INIT_RAM_SIZE        0x10000    /* 64 KB */
+
+/* include/configs/sc8830_gprime.h */
+#define CFG_SYS_HZ_CLOCK           26000000
+#define CONFIG_SYS_HZ              1000
+
+/* * This puts the early stack at the top of our 64KB window
+ * minus the size of the Global Data structure.
+ */
+#define CFG_SYS_INIT_SP_ADDR \
+    (CFG_SYS_INIT_RAM_ADDR + CFG_SYS_INIT_RAM_SIZE - GENERATED_GBL_DATA_SIZE)
+
 /* Architecture and CPU */
 #define CONFIG_SYS_DCACHE_OFF
 #define CONFIG_ARMV7_PSCI_1_0

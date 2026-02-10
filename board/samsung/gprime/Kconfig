@@ -1,0 +1,15 @@
+if TARGET_SC8830_GPRIME
+
+config SYS_BOARD
+    default "gprime"
+
+config SYS_VENDOR
+    default "samsung"
+
+config SYS_SOC
+    default "sc8830"
+
+config SYS_CONFIG_NAME
+    default "sc8830_gprime"
+
+endif

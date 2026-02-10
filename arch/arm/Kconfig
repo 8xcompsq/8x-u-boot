@@ -1,8 +1,18 @@
+config ARCH_SC8830
+	bool
+	select CPU_V7A
+	select DM
+	select OF_CONTROL
+	help
+	  Internal symbol for Spreadtrum SC8830 support
+
 menu "ARM architecture"
 	depends on ARM
 
+
 config SYS_ARCH
 	default "arm"
+
 
 config ARM64
 	bool
@@ -21,6 +31,9 @@ config ARM64_CRC32
 	  This is faster than software crc32 calculation. This instruction may
 	  not be present on all ARMv8.0, but is always present on ARMv8.1 and
 	  newer.
+
+
+
 
 config COUNTER_FREQUENCY
 	int "Timer clock frequency"
@@ -610,7 +623,7 @@ config S5P
 
 choice
 	prompt "Target select"
-	default TARGET_HIKEY
+	default TARGET_SC8830_GPRIME
 
 config ARCH_AIROHA
 	bool "Airoha SoCs"
@@ -644,6 +657,7 @@ config ARCH_HISTB
 	imply CMD_DM
 	help
 	  Support for HiSTB SoCs.
+
 
 config ARCH_KIRKWOOD
 	bool "Marvell Kirkwood"
@@ -2188,6 +2202,14 @@ config ARCH_GXP
 	select OF_CONTROL
 	imply CMD_DM
 
+config TARGET_SC8830_GPRIME
+	bool "Support Galaxy Grand Prime (SC8830)"
+	select ARCH_SC8830  # This "pulls in" the SoC features safely
+	help
+	  This enables support for the Samsung Galaxy Grand Prime 
+	  powered by the SC8830 SoC.
+
+
 endchoice
 
 config SUPPORT_PASSING_ATAGS
@@ -2271,6 +2293,8 @@ config SYS_KWD_CONFIG
 	help
 	  Path within the source directory to the kwbimage.cfg file to use
 	  when packaging the U-Boot image for use.
+
+source "arch/arm/mach-sprd/Kconfig"
 
 source "arch/arm/mach-airoha/Kconfig"
 
@@ -2451,6 +2475,7 @@ source "board/phytium/durian/Kconfig"
 source "board/phytium/pomelo/Kconfig"
 source "board/phytium/pe2201/Kconfig"
 source "board/xen/xenguest_arm64/Kconfig"
+source "board/samsung/gprime/Kconfig"
 
 source "arch/arm/Kconfig.debug"
 
