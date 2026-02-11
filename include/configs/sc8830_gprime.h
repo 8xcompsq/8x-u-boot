@@ -2,8 +2,14 @@
 #define __CONFIG_H
 
 /* Initial Stack Setup */
-#define CFG_SYS_INIT_RAM_ADDR        0x80000000
-#define CFG_SYS_INIT_RAM_SIZE        0x10000    /* 64 KB */
+#define CFG_SYS_INIT_RAM_ADDR        0xf5000000 /* Internal SRAM base */
+#define CFG_SYS_INIT_RAM_SIZE        0x4000     /* 16 KB */
+
+/* Real UART Base from DTS */
+#define CFG_SC8830_UART0_BASE        0xf5360000
+
+/* GPIO Base from DTS */
+#define CFG_SC8830_GPIO_BASE         0xf5220000
 
 /* include/configs/sc8830_gprime.h */
 #define CFG_SYS_HZ_CLOCK           26000000

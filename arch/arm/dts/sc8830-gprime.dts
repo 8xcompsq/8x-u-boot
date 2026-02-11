@@ -26,10 +26,14 @@
 		reg = <0x80000000 0x40000000>;
 	};
 
-	uart0: serial@70000000 {
+	uart0: serial@f5360000 {
 		compatible = "sprd,sc8830-uart";
-		reg = <0x70000000 0x100>;
+		reg = <0xf5360000 0x100>;
 		clock-frequency = <26000000>;
 		status = "okay";
+	};
+	watchdog@40 {
+		compatible = "sprd,watchdog";
+		reg = <0X40 0x40>;
 	};
 };
